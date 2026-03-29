@@ -80,7 +80,7 @@ transform = transforms.Compose([
 ])
 
 # ================= ROUTES =================
-@app.route("/")
+@app.route("/predict")
 def home():
     return render_template("index.html")
 
