@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vision Price Net</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<!-- tsParticles -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+
+<body>
+
+<!-- Theme toggle -->
+<button id="theme-toggle">🌙</button>
+
+<!-- Floating particles container -->
+<div id="tsparticles"></div>
+
+<!-- 3D card container -->
+<div class="container">
+    <div class="container-inner">
+
+        <h1>🏠 Vision Price Net</h1>
+        <p class="subtitle">AI powered house price prediction</p>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+
+            <!-- Drag & Drop Image -->
+            <div class="dropzone" id="dropzone">
+                <p>Drag & Drop 4 House Image</p>
+                <p>Bedroom image</p>
+                <input type="file" name="image1" id="image1" required>
+                <p>Bathroom image</p>
+                <input type="file" name="image2" id ="image2" required>
+                <p>Kitchen image</p>
+                <input type="file" name="image3" id ="image3" required>
+                <p>Front View image</p>
+                <input type="file" name="image4" id ="image4" required>
+                <img id="preview"/>
+            </div>
+
+            <!-- Inputs -->
+            <div class="inputs">
+                <input type="number" name="bedrooms" placeholder="Bedrooms" required>
+                <input type="number" name="bathrooms" placeholder="Bathrooms" required>
+                <input type="number" name="area" placeholder="Area (sq ft)" required>
+                <input type="number" name="location" placeholder="Enter ZIP Code (e.g. 85284)" required>           
+            </div>
+
+            <!-- Predict Button -->
+            <button class="predict-btn">Predict Price</button>
+
+            <!-- Loader -->
+            <div id="loader" class="loader hidden">
+                <div class="spinner"></div>
+                <p>AI analyzing house... 🧠</p>
+            </div>
+
+        </form>
+
+        <!-- Result & Confidence Meter -->
+        <div id="result-container">
+            {% if result %}
+            <h2>{{ result }}</h2>
+            <div class="meter">
+                <div id="meter-fill" data-width="{{ confidence }}"></div>
+            </div>
+            {% endif %}
+
+            {% if confidence %}
+            <p class="confidence">AI Confidence: {{ confidence }}</p>
+            {% endif %}
+
+            {% if price_range %}
+            <p style="margin-top:10px;">Estimated Range: {{ price_range }}</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+<p style="font-size:12px;opacity:0.7">
+*Prediction based on trained AI model using image + metadata
+</p>
+{% if result %}
+<iframe
+  width="100%"
+  height="200"
+  style="border:0;margin-top:10px;"
+  loading="lazy"
+  allowfullscreen
+  src="https://www.google.com/maps?q={{ location }}&output=embed">
+</iframe>
+{% endif %}

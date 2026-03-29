@@ -1,0 +1,72 @@
+/* Reset and base */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#667eea,#764ba2);overflow-y:auto;transition:0.5s;}
+
+/* Dark mode */
+body.dark{background:#0f172a;color:white;}
+body.dark .container{background:rgba(255,255,255,0.1);}
+body.dark .predict-btn{background:linear-gradient(45deg,#4c51bf,#6b46c1);}
+
+/* Animated background glow */
+.background,.container-inner::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,#ffffff30,#ffffff00);filter:blur(120px);animation:float 8s infinite ease-in-out;}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-40px)}100%{transform:translateY(0)}}
+
+/* Container */
+.container{width:420px;padding:40px;border-radius:20px;background:rgba(255,255,255,0.15);backdrop-filter:blur(20px);box-shadow:0 20px 40px rgba(0,0,0,0.2);text-align:center;color:white;transition:0.3s;}
+.container-inner{transition:transform 0.2s ease;}
+
+/* Typography */
+h1{font-size:28px;margin-bottom:10px;}
+.subtitle{opacity:0.8;margin-bottom:30px;}
+
+/* Dropzone */
+.dropzone{border:2px dashed white;padding:25px;border-radius:15px;cursor:pointer;margin-bottom:20px;transition:0.3s;position:relative;}
+.dropzone:hover{background:rgba(255,255,255,0.1);}
+#image{display:none;}
+#preview{width:100%;margin-top:10px;border-radius:10px;display:none;}
+
+/* Inputs */
+.inputs input{width:100%;padding:12px;border:none;border-radius:10px;margin-bottom:12px;outline:none;}
+
+/* Button */
+.predict-btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(45deg,#ff7eb3,#ff758c);color:white;font-weight:600;cursor:pointer;transition:0.3s;}
+.predict-btn:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.3);}
+
+/* Loader */
+.loader{margin-top:20px;text-align:center;}
+.hidden{display:none;}
+.spinner{width:40px;height:40px;border:4px solid #eee;border-top:4px solid #6366f1;border-radius:50%;animation:spin 1s linear infinite;margin:auto;}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+/* Result card */
+.result-card, #result-container h2{margin-top:20px;padding:15px;border-radius:12px;background:rgba(255,255,255,0.2);font-size:20px;font-weight:600;animation:fadeIn 0.6s;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* Confidence meter */
+.meter{width:100%;height:20px;background:#eee;border-radius:20px;margin-top:20px;overflow:hidden;}
+#meter-fill{height:100%;width:0;background:linear-gradient(90deg,#6366f1,#9333ea);animation:fillmeter 2s ease;}
+@keyframes fillmeter{from{width:0;}to{width:70%;}}
+
+/* Confidence text */
+.confidence{color:#6366f1;font-weight:600;margin-top:10px;}
+
+/* Theme toggle */
+#theme-toggle{position:absolute;top:20px;right:20px;border:none;background:#6366f1;color:white;padding:10px 14px;border-radius:10px;cursor:pointer;}
+
+/* Sparkle effect */
+.sparkle{position:absolute;width:6px;height:6px;background:white;border-radius:50%;pointer-events:none;opacity:0.8;animation:sparkleAnim 0.5s linear;}
+@keyframes sparkleAnim{0%{transform:scale(1);}100%{transform:scale(0);opacity:0;}}
+.dark {
+    background: #121212;
+    color: white;
+}
+
+.dark input,
+.dark button {
+    background: #222;
+    color: white;
+}
+.map-container {
+    width: 100%;
+    margin-top: 20px;
+}
