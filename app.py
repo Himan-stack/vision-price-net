@@ -30,8 +30,11 @@ with open("models/price_scale.json") as f:
 def home():
     return render_template("index.html")
 
-@app.route("/predict", methods=["POST"])
+@app.route("/predict", methods=["GET" , "POST"])
 def predict():
+     # 👉 If user opens URL directly
+    if request.method == "GET":
+         return render_template("index.html")
 
     # ===== INPUT =====
     try:
